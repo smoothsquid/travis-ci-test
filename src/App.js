@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
 
-const conversionData = {
+const conversionChart = {
     meter: 1,
     inch: 39.37,
     centimeter: 100,
+    mile: 1 / 1609,
+    yard: 1.0936132983,
 };
 
-function convert(input, unit, targetUnit) {
-    const conversion = conversionData[targetUnit] / conversionData[unit];
+function convert(value, unit, targetUnit) {
+    const conversion = conversionChart[targetUnit] / conversionChart[unit];
 
-    return input * conversion;
+    return value * conversion;
+}
+
+function UnitSelector(props) {
+    return (
+        <select {...props}>
+            <option value="centimeter">cm</option>
+            <option value="meter">Meter</option>
+            <option value="inch">Inch</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+        </select>
+    );
 }
 
 function App() {
@@ -24,13 +38,11 @@ function App() {
 
     return (
         <div>
-            <select
+            <UnitSelector
                 value={inputUnit}
                 onChange={({ target }) => setInputUnit(target.value)}
-            >
-                <option value="meter">Meter</option>
-                <option value="inch">Inch</option>
-            </select>
+            />
+
             <input
                 id="meter"
                 type="number"
@@ -41,13 +53,11 @@ function App() {
                 placeholder="Meter"
             />
             {"=>"}
-            <select
+            <UnitSelector
                 value={targetUnit}
                 onChange={({ target }) => setTargetUnit(target.value)}
-            >
-                <option value="meter">Meter</option>
-                <option value="inch">Inch</option>
-            </select>
+            />
+
             <label htmlFor="inch">Inch</label>
             <input
                 id="inch"
