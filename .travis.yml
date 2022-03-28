@@ -1,11 +1,21 @@
 language: node_js
+
 node_js:
     - "16.13.1"
-before_install:
-    - yarn install
+
 branches:
     only:
         - master
+cache:
+    directories:
+        - "$HOME/node_modules"
+
+before_install:
+    - yarn install
+
+script:
+    - yarn build
+
 notifications:
     email:
         recipients:
