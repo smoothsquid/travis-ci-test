@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+    - "16.13.1"
+before_install:
+    - yarn install
+branches:
+    only:
+        - master
+notifications:
+    email:
+        recipients:
+            - freejak5520@naver.com

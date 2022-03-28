@@ -90,6 +90,7 @@ function Counter() {
 function App() {
     return (
         <div>
+            <h1>Inch Calculator</h1>
             <Counter />
             <LengthCalculator />
         </div>
