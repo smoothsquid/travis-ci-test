@@ -14,7 +14,7 @@ function convert(value, unit, targetUnit) {
     return value * conversion;
 }
 
-function UnitSelector(props) {
+function UnitSelector({ ...props }) {
     return (
         <select {...props}>
             <option value="centimeter">cm</option>
@@ -26,7 +26,7 @@ function UnitSelector(props) {
     );
 }
 
-function App() {
+function LengthCalculator() {
     const [inputUnit, setInputUnit] = useState("meter");
     const [input, setInput] = useState(0);
     const [targetUnit, setTargetUnit] = useState("inch");
@@ -35,7 +35,6 @@ function App() {
     useEffect(() => {
         setResult(convert(input, inputUnit, targetUnit));
     }, [input, inputUnit, targetUnit]);
-
     return (
         <div>
             <UnitSelector
@@ -66,6 +65,33 @@ function App() {
                 disabled
                 placeholder="Inch"
             />
+        </div>
+    );
+}
+
+function Counter() {
+    const [count, setCount] = useState(0);
+
+    return (
+        <div>
+            <span>{count}</span>
+
+            <button
+                onClick={() => {
+                    setCount((current) => current + 1);
+                }}
+            >
+                Count
+            </button>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div>
+            <Counter />
+            <LengthCalculator />
         </div>
     );
 }
